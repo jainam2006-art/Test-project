@@ -1,0 +1,30 @@
+// Layout.jsx - Owned by Member 1
+import React from 'react';
+
+export default function Layout({ children }) {
+  return (
+    <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
+      {/* Header */}
+      <header className="bg-indigo-600 text-white p-4 shadow-md">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <h1 className="text-2xl font-bold tracking-tight">JEE/CET Notes Vault</h1>
+          <nav className="space-x-4 text-sm font-medium">
+            <a href="#physics" className="hover:text-indigo-200">Physics</a>
+            <a href="#chemistry" className="hover:text-indigo-200">Chemistry</a>
+            <a href="#maths" className="hover:text-indigo-200">Mathematics</a>
+          </nav>
+        </div>
+      </header>
+
+      {/* Main Content Area */}
+      <main className="max-w-6xl mx-auto p-6 mt-6">
+        {children}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-center text-gray-400 p-4 mt-12 text-sm">
+        Built for the Hackathon. Focus on your studies.
+      </footer>
+    </div>
+  );
+}
