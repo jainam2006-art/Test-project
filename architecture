@@ -1,0 +1,67 @@
+// App.jsx - Owned by Member 3 (Leader)
+import React, { useState } from 'react';
+import Layout from './components/Layout';
+import SubjectCard from './components/SubjectCard';
+import { NoteItem } from './components/NoteItem';
+
+// Leader defines the mock database so others can test their UI
+const mockDatabase = {
+  Physics: [
+    { id: 1, title: "Rotational Dynamics Full Notes", type: "PDF", link: "#" },
+    { id: 2, title: "Oscillations Formula Sheet", type: "Cheat Sheet", link: "#" }
+  ],
+  Chemistry: [
+    { id: 3, title: "Organic Name Reactions", type: "PDF", link: "#" },
+    { id: 4, title: "Electrochemistry Numericals", type: "Practice", link: "#" }
+  ],
+  Mathematics: [
+    { id: 5, title: "Integration Shortcuts for CET", type: "PDF", link: "#" },
+    { id: 6, title: "Vectors & 3D Geometry", type: "Notes", link: "#" }
+  ]
+};
+
+export default function App() {
+  // Leader manages the state (what the user is currently looking at)
+  const [activeSubject, setActiveSubject] = useState(null);
+
+  return (
+    <Layout>
+      {!activeSubject ? (
+        <>
+          <h2 className="text-3xl font-bold mb-6">Select a Subject</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {Object.keys(mockDatabase).map((subject) => (
+              <SubjectCard 
+                key={subject}
+                subjectName={subject} 
+                chaptersCount={mockDatabase[subject].length}
+                onClick={() => setActiveSubject(subject)}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <button 
+            onClick={() => setActiveSubject(null)}
+            className="text-gray-500 hover:text-gray-900 mb-6 flex items-center"
+          >
+            &larr; Back to Subjects
+          </button>
+          
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">{activeSubject} Notes</h2>
+          <div className="border-t border-gray-100">
+            {mockDatabase[activeSubject].map((note) => (
+              <NoteItem 
+                key={note.id}
+                title={note.title} 
+                type={note.type} 
+                downloadLink={note.link} 
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </Layout>
+  );
+}
