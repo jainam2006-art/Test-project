@@ -1,0 +1,37 @@
+// SubjectCard.jsx - Owned by Member 2
+import React from 'react';
+
+export default function SubjectCard({ subjectName, chaptersCount, onClick }) {
+  return (
+    <div 
+      onClick={onClick}
+      className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow cursor-pointer hover:-translate-y-1 transform duration-200"
+    >
+      <h2 className="text-xl font-semibold text-gray-800">{subjectName}</h2>
+      <p className="text-gray-500 mt-2">{chaptersCount} Chapters Available</p>
+      <button className="mt-4 text-indigo-600 font-medium hover:text-indigo-800">
+        Browse Notes &rarr;
+      </button>
+    </div>
+  );
+}
+
+// NoteItem.jsx - Owned by Member 2
+export function NoteItem({ title, type, downloadLink }) {
+  return (
+    <div className="flex justify-between items-center p-4 border-b border-gray-100 hover:bg-gray-50">
+      <div>
+        <h3 className="font-medium text-gray-800">{title}</h3>
+        <span className="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full mt-1 inline-block">
+          {type} {/* e.g., "PDF", "Video", "Formulas" */}
+        </span>
+      </div>
+      <a 
+        href={downloadLink}
+        className="px-4 py-2 bg-indigo-600 text-white text-sm rounded hover:bg-indigo-700 transition"
+      >
+        View / Download
+      </a>
+    </div>
+  );
+}
